@@ -19,7 +19,7 @@ const itemSchema = new mongoose.Schema({
 const Item = mongoose.model('Item', itemSchema);
 
 // MongoDB connection URI
-const mongoURI = 'mongodb://127.0.0.1:27017/musicDB'; // Adjust your database name here!
+const mongoURI = process.env.MONGODB_URI;
 
 // Connect to MongoDB using Mongoose
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
