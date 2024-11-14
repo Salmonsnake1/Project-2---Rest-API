@@ -18,17 +18,22 @@ const itemSchema = new mongoose.Schema({
 // Create the Item model based on the schema
 const Item = mongoose.model('Item', itemSchema);
 
-// MongoDB connection URI
-const mongoURI = process.env.MONGODB_URI;
+// MongoDB Atlas connection URI
+const mongoURI = 'mongodb+srv://TestUser:TestPass@clusterproject2.i1d3f.mongodb.net/musicDB?retryWrites=true&w=majority&appName=ClusterProject2';
 
-// Connect to MongoDB using Mongoose
+// Connect to MongoDB Atlas using Mongoose
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-        console.log('Connected to MongoDB');
+        console.log('Connected to MongoDB Atlas');
     })
     .catch(err => {
         console.error('Error connecting to MongoDB:', err);
     });
+
+// Sample route to test the connection
+app.get('/', (req, res) => {
+    res.send('MongoDB Atlas connection is working!');
+});
 
 // Sample data for testing the "Add" POST route
 // Uncomment the addSampleData() call to add this data to MongoDB when the server starts.
