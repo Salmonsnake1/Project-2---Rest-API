@@ -47,9 +47,12 @@ app.get('/api/search', async (req, res) => {
     try {
         const query = {}; // creates empty query object
 
-        // conditions for object based on query parameters
         if (req.query.id) {
-            query.id = { $regex: req.query.id, $options: 'i'};
+            if (mongoose.Types.ObjectId.isValid(req.query.id)) {
+                query._id = req.query.id; 
+            } else {
+                return res.status(400).json({ message: 'Invalid ID format' });
+            }
         }
 
         if (req.query.title) {
@@ -129,7 +132,7 @@ app.post('/api/add', async (req, res) => {
     }
 });
 
-// /api/update/:id route updates the exisiting id
+// /api/update/:id route updates the entry
 app.put('/api/update/:id', async (req, res) => {
     try {
         const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, { new: true }); // finds item by params.id, the req.body updates it, the new: true checks updated returns
