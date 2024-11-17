@@ -49,7 +49,7 @@ app.get('/api/search', async (req, res) => {
 
         // conditions for object based on query parameters
         if (req.query.id) {
-            query.id = Number(req.query.id);
+            query.id = { $regex: req.query.id, $options: 'i'};
         }
 
         if (req.query.title) {
