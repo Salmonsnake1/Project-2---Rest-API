@@ -48,6 +48,10 @@ app.get('/api/search', async (req, res) => {
         const query = {}; // creates empty query object
 
         // conditions for object based on query parameters
+        if (req.query.id) {
+            query.id = Number(req.query.id);
+        }
+
         if (req.query.title) {
             query.title = { $regex: req.query.title, $options: 'i' }; // options i part is case insensitive search
         }
