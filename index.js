@@ -32,30 +32,6 @@ app.get('/', (req, res) => { // quick route to test the connection is working
     res.send('MongoDB Atlas connection is working!');
 });
 
-// This code doesn't run at the moment but it was sampleData for the start for testing.
-const sampleData = [
-    {
-        title: 'Abbey Road',
-        artist: 'The Beatles',
-        genre: 'Rock',
-        releaseDate: new Date('1969-09-26'),
-        duration: 44
-    },
-    {
-        title: 'Thriller',
-        artist: 'Michal Jackson',
-        genre: 'Pop',
-        releaseDate: new Date('1982-11-30'),
-        duration: 46
-    }
-];
-
-async function addSampleData() {
-    await Item.insertMany(sampleData);
-    console.log('Sample data added!');
-}
-// addSampleData(); commented out but for testing sampledata at the beginning
-
 // /api/getall route - shows all database
 app.get('/api/getall', async (req, res) => { // sets up the route, seen in other routes
     try {
