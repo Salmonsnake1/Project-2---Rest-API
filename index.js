@@ -95,6 +95,11 @@ app.get('/api/search', async (req, res) => {
         }
 
         const results = await Item.find(query); // initiates query
+
+        if (results.length === 0) { // message if no results found
+            return res.status(404).json({ message: 'No matching items found' });
+        }
+
         res.json(results); // gives query as JSON
     } catch (error) { // error catch
         res.status(500).json({ message: 'Error retrieving items', error });
