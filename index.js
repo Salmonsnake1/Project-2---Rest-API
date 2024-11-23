@@ -1,8 +1,10 @@
 const express = require('express'); // Imports express
 const mongoose = require('mongoose'); // Imports mongoose
 const app = express(); // Creates express application instance, used for defining HTTP routes etc.
+const cors = require('cors');
 
 app.use(express.json()); // Allows parsing of JSON data - middleware
+app.use(cors());
 
 
 const itemSchema = new mongoose.Schema({ // creating schema for mongoose for music albums, required means has to be added, default sets it to Unknown and rating must be between 0-1
